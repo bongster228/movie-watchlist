@@ -5,5 +5,8 @@
   "MovieDB": {
     "BaseURL": "https://api.themoviedb.org/3",
     "API_Key": "164dfde70e386156481d71b0db424e7f"
+  },
+  "jwt": {
+    "secret": "movie"
   }
 }
