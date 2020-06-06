@@ -125,6 +125,38 @@
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
   }
+
+  &__button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.card-btn {
+  border: none;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: white;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.2s;
+
+  &--watch {
+    background-color: #0a85ed;
+  }
+  &--watched {
+    background-color: #e85c90;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    filter: brightness(70%);
+  }
 }
 
 .landing-btn {

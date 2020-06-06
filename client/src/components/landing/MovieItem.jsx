@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const MovieItem = ({
@@ -13,6 +14,10 @@ const MovieItem = ({
     release_date,
   },
 }) => {
+  const handleWatchButton = (movieData) => {};
+
+  const handleWatchedButton = (movieData) => {};
+
   return (
     <Fragment>
       <div className="movie-card">
@@ -38,6 +43,10 @@ const MovieItem = ({
             <div className="movie-card__popularity">{popularity}</div>
             <div className="movie-card__vote-average">{vote_average}</div>
           </div>
+        </div>
+        <div className="movie-card__button">
+          <button className="card-btn card-btn--watch">Watch</button>
+          <button className="card-btn card-btn--watched">Watched</button>
         </div>
       </div>
     </Fragment>

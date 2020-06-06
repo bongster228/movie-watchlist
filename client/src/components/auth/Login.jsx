@@ -25,7 +25,7 @@ const Login = ({ loginUser, history }) => {
       <section className="content-form">
         <div className="register-form">
           <form className="form" onSubmit={(e) => onSubmit(e)}>
-            <h2 className="heading-2">Register</h2>
+            <h2 className="heading-2">Login</h2>
             <div className="form__field">
               <label htmlFor="username">Username</label>
               <input

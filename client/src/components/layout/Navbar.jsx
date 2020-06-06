@@ -42,6 +42,7 @@ const Navbar = ({
     if (isSearching) {
       clearMovies();
       resetPageNum();
+      setSearch('');
       setSearchTerm('', false);
     }
 

@@ -101,6 +101,28 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center; }
+  .movie-card__button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly; }
+
+.card-btn {
+  border: none;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: white;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.2s; }
+  .card-btn--watch {
+    background-color: #0a85ed; }
+  .card-btn--watched {
+    background-color: #e85c90; }
+  .card-btn:focus {
+    outline: none; }
+  .card-btn:hover {
+    filter: brightness(70%); }
 
 .landing-btn {
   padding: 2rem 0;
