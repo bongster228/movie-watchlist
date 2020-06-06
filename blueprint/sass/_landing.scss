@@ -80,7 +80,7 @@
 .content {
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-auto-rows: max-content;
   gap: 2rem;
   align-items: start;
@@ -120,5 +120,24 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+  }
+}
+
+.landing-btn {
+  padding: 2rem 0;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: $color-primary-light;
+  border: none;
+
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &:active {
+    filter: brightness(70%);
   }
 }

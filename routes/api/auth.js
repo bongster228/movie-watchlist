@@ -3,11 +3,22 @@ const axios = require('axios');
 const config = require('config');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth');
 const User = require('../../model/User');
 
 // @route   /api/auth/
-// @info    Authenticate user
+// @info    Authenticate user and send user info
 // @access  Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // @route   /api/auth/register
 // @info    Register a new user

@@ -25,9 +25,6 @@ body {
   margin: 4rem auto;
   width: 80vw;
   background-color: #1c3041;
-  display: grid;
-  grid-template-rows: max-content;
-  gap: 2rem;
   box-shadow: 0 5rem 7rem rgba(0, 0, 0, 0.8);
 }
 
@@ -83,10 +80,36 @@ body {
   color: #000;
 }
 
-.content {
-  padding: 3rem;
+.content-movie {
+  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-auto-rows: max-content;
+  gap: 2rem;
+  align-items: start;
+}
+
+.landing-btn {
+  padding: 2rem 0;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: #2fe6de;
+  border: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.landing-btn:focus {
+  outline: none;
+}
+.landing-btn:hover,
+.landing-btn:active {
+  filter: brightness(70%);
+}
+
+.content-form {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-auto-rows: max-content;
   gap: 2rem;
   align-items: start;

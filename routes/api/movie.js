@@ -22,9 +22,11 @@ router.get('/popular', async (req, res) => {
 // @route   /api/movie/search
 // @info    Search movies by title
 // @access  Public
-router.get('/search', async (req, res) => {
+router.get('/search/:searchTerm', async (req, res) => {
   try {
-    const { searchTerm } = req.body;
+    console.log(req.params);
+
+    const { searchTerm } = req.params;
 
     const response = await axios.get(
       `${config.get('MovieDB.BaseURL')}/search/movie?api_key=${config.get(
@@ -32,7 +34,7 @@ router.get('/search', async (req, res) => {
       )}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
     );
 
-    res.json(response.data);
+    res.json(response.data.results);
   } catch (err) {
     console.log(err.message);
   }

@@ -1,4 +1,4 @@
-import { GET_POPULAR } from '../actions/types';
+import { GET_POPULAR, SEARCH_MOVIES } from '../actions/types';
 
 const initialState = {
   movies: [],
@@ -12,6 +12,13 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_POPULAR:
+      return {
+        ...state,
+        movies: payload,
+        loading: false,
+      };
+
+    case SEARCH_MOVIES:
       return {
         ...state,
         movies: payload,

@@ -70,7 +70,7 @@ body {
 .content {
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-auto-rows: max-content;
   gap: 2rem;
   align-items: start; }
@@ -99,6 +99,18 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center; }
+
+.landing-btn {
+  padding: 2rem 0;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: #2fe6de;
+  border: none;
+  transition: all 0.2s; }
+  .landing-btn:focus {
+    outline: none; }
+  .landing-btn:hover, .landing-btn:active {
+    filter: brightness(70%); }
 
 .heading-2 {
   font-size: 3rem;

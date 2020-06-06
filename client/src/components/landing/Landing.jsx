@@ -11,11 +11,12 @@ const Landing = ({ getPopularMovies, movie: { movies, loading } }) => {
 
   return movies.length > 0 && !loading ? (
     <Fragment>
-      <section className="content">
+      <section className="content-movie">
         {movies.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </section>
+      <button class="btn landing-btn">Load More</button>
     </Fragment>
   ) : null;
 };
