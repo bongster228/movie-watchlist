@@ -6,6 +6,7 @@ import {
   SET_SEARCH,
   CLEAR_MOVIES,
   RESET_PAGE_NUM,
+  SET_PAGE_NUM,
 } from './types';
 
 export const getPopularMovies = (pageNum) => async (dispatch) => {
@@ -79,4 +80,17 @@ export const clearMovies = () => (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const setPageNum = (num) => {
+  return {
+    type: SET_PAGE_NUM,
+    payload: num,
+  };
+};
+
+export const resetPageNum = () => {
+  return {
+    type: RESET_PAGE_NUM,
+  };
 };

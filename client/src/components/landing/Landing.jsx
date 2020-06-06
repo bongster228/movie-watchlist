@@ -5,6 +5,7 @@ import {
   getPopularMovies,
   searchMovies,
   clearMovies,
+  setPageNum,
 } from '../../actions/movies';
 import MovieItem from './MovieItem';
 
@@ -12,11 +13,10 @@ const Landing = ({
   getPopularMovies,
   searchMovies,
   clearMovies,
-  movie: { movies, loading, isSearching, searchTerm },
+  setPageNum,
+  movie: { movies, loading, isSearching, searchTerm, pageNum },
   history,
 }) => {
-  const [pageNum, setPageNum] = useState(1);
-
   useEffect(() => {
     if (isSearching) {
       if (pageNum === 1) clearMovies();
@@ -64,4 +64,5 @@ export default connect(mapStateToProps, {
   getPopularMovies,
   searchMovies,
   clearMovies,
+  setPageNum,
 })(Landing);

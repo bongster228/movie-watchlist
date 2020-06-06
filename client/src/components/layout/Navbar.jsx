@@ -6,6 +6,7 @@ import {
   setSearchTerm,
   getPopularMovies,
   clearMovies,
+  resetPageNum,
 } from '../../actions/movies';
 
 // TODO: Page does not refresh when a second repeat search happens
@@ -15,8 +16,8 @@ const Navbar = ({
   movie: { isSearching },
   logout,
   setSearchTerm,
-  getPopularMovies,
   clearMovies,
+  resetPageNum,
   history,
 }) => {
   const [search, setSearch] = useState('');
@@ -26,6 +27,7 @@ const Navbar = ({
     e.preventDefault();
 
     if (!isSearching) {
+      resetPageNum();
       clearMovies();
     }
 
@@ -39,6 +41,7 @@ const Navbar = ({
 
     if (isSearching) {
       clearMovies();
+      resetPageNum();
       setSearchTerm('', false);
     }
 
@@ -117,6 +120,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   logout,
   setSearchTerm,
-  getPopularMovies,
+  resetPageNum,
   clearMovies,
 })(withRouter(Navbar));

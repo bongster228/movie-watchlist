@@ -3,6 +3,8 @@ import {
   SEARCH_MOVIES,
   SET_SEARCH,
   CLEAR_MOVIES,
+  SET_PAGE_NUM,
+  RESET_PAGE_NUM,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +13,7 @@ const initialState = {
   loading: true,
   isSearching: false,
   searchTerm: null,
+  pageNum: 1,
   error: {},
 };
 
@@ -44,6 +47,20 @@ export default function (state = initialState, action) {
         ...state,
         movies: [...state.movies, ...payload],
         loading: false,
+      };
+
+    case SET_PAGE_NUM:
+      return {
+        ...state,
+        loading: false,
+        pageNum: payload,
+      };
+
+    case RESET_PAGE_NUM:
+      return {
+        ...state,
+        loading: false,
+        pageNum: 1,
       };
 
     default:
