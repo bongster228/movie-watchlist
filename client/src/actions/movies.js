@@ -1,9 +1,15 @@
 import axios from 'axios';
-import { GET_POPULAR, SEARCH_MOVIES, MOVIE_ERROR } from './types';
+import {
+  GET_POPULAR,
+  SEARCH_MOVIES,
+  MOVIE_ERROR,
+  SET_SEARCH,
+  CLEAR_MOVIES,
+} from './types';
 
-export const getPopularMovies = () => async (dispatch) => {
+export const getPopularMovies = (pageNum) => async (dispatch) => {
   try {
-    const response = await axios.get('api/movie/popular');
+    const response = await axios.get(`api/movie/popular/${pageNum}`);
 
     dispatch({
       type: GET_POPULAR,
@@ -22,15 +28,16 @@ export const getPopularMovies = () => async (dispatch) => {
   }
 };
 
-export const searchMovies = (formData) => async (dispatch) => {
+export const searchMovies = (formData, pageNum) => async (dispatch) => {
   try {
     const config = {
       'Content-Type': 'application/json',
     };
 
-    const { searchTerm } = formData;
-
-    const response = await axios.get(`api/movie/search/${searchTerm}`, config);
+    const response = await axios.get(
+      `api/movie/search/${formData}/${pageNum}`,
+      config
+    );
 
     dispatch({
       type: SEARCH_MOVIES,
@@ -46,5 +53,26 @@ export const searchMovies = (formData) => async (dispatch) => {
         status: err.response.status,
       },
     });
+  }
+};
+
+export const setSearchTerm = (formData) => (dispatch) => {
+  try {
+    dispatch({
+      type: SET_SEARCH,
+      payload: formData,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const clearMovies = () => (dispatch) => {
+  try {
+    dispatch({
+      type: CLEAR_MOVIES,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };

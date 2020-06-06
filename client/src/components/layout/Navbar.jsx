@@ -2,26 +2,21 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
-import { searchMovies } from '../../actions/movies';
+import { setSearchTerm } from '../../actions/movies';
 
 const Navbar = ({
   auth: { isAuthenticated, loading },
   logout,
-  searchMovies,
+  setSearchTerm,
 }) => {
-  const [formData, setFormData] = useState({
-    searchTerm: '',
-  });
+  const [search, setSearch] = useState('');
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setSearch(e.target.value);
   const onClick = (e) => {
     e.preventDefault();
 
-    searchMovies(formData);
+    setSearchTerm(search);
   };
-
-  const { searchTerm } = formData;
 
   return (
     <Fragment>
@@ -33,7 +28,7 @@ const Navbar = ({
           <input
             type="text"
             className="nav__search-bar"
-            value={searchTerm}
+            value={search}
             name="searchTerm"
             onChange={(e) => onChange(e)}
             placeholder="Search"
@@ -77,4 +72,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout, searchMovies })(Navbar);
+export default connect(mapStateToProps, { logout, setSearchTerm })(Navbar);

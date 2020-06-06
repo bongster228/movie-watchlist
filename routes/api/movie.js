@@ -5,12 +5,14 @@ const config = require('config');
 // @route   /api/movie/popular
 // @info    Get the most popular movies
 // @access  Public
-router.get('/popular', async (req, res) => {
+router.get('/popular/:pageNum', async (req, res) => {
   try {
+    const { pageNum } = req.params;
+
     const response = await axios.get(
       `${config.get('MovieDB.BaseURL')}/movie/popular?api_key=${config.get(
         'MovieDB.API_Key'
-      )}&language=en-US&page=1`
+      )}&language=en-US&page=${pageNum}`
     );
 
     res.json(response.data.results);
@@ -22,16 +24,14 @@ router.get('/popular', async (req, res) => {
 // @route   /api/movie/search
 // @info    Search movies by title
 // @access  Public
-router.get('/search/:searchTerm', async (req, res) => {
+router.get('/search/:searchTerm/:pageNum', async (req, res) => {
   try {
-    console.log(req.params);
-
-    const { searchTerm } = req.params;
+    const { searchTerm, pageNum } = req.params;
 
     const response = await axios.get(
       `${config.get('MovieDB.BaseURL')}/search/movie?api_key=${config.get(
         'MovieDB.API_Key'
-      )}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
+      )}&language=en-US&query=${searchTerm}&page=${pageNum}&include_adult=false`
     );
 
     res.json(response.data.results);
