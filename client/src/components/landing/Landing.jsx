@@ -13,6 +13,7 @@ const Landing = ({
   searchMovies,
   clearMovies,
   movie: { movies, loading, isSearching, searchTerm },
+  history,
 }) => {
   const [pageNum, setPageNum] = useState(1);
 

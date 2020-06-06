@@ -5,6 +5,7 @@ import {
   MOVIE_ERROR,
   SET_SEARCH,
   CLEAR_MOVIES,
+  RESET_PAGE_NUM,
 } from './types';
 
 export const getPopularMovies = (pageNum) => async (dispatch) => {
@@ -56,11 +57,14 @@ export const searchMovies = (formData, pageNum) => async (dispatch) => {
   }
 };
 
-export const setSearchTerm = (formData) => (dispatch) => {
+export const setSearchTerm = (formData, isSearching = true) => (dispatch) => {
   try {
     dispatch({
       type: SET_SEARCH,
-      payload: formData,
+      payload: {
+        searchTerm: formData,
+        isSearching,
+      },
     });
   } catch (err) {
     console.log(err);

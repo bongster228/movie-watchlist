@@ -1,13 +1,23 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
-import { setSearchTerm } from '../../actions/movies';
+import {
+  setSearchTerm,
+  getPopularMovies,
+  clearMovies,
+} from '../../actions/movies';
+
+// TODO: Page does not refresh when a second repeat search happens
 
 const Navbar = ({
   auth: { isAuthenticated, loading },
+  movie: { isSearching },
   logout,
   setSearchTerm,
+  getPopularMovies,
+  clearMovies,
+  history,
 }) => {
   const [search, setSearch] = useState('');
 
@@ -15,13 +25,34 @@ const Navbar = ({
   const onClick = (e) => {
     e.preventDefault();
 
+    if (!isSearching) {
+      clearMovies();
+    }
+
     setSearchTerm(search);
+
+    history.push('/');
+  };
+
+  const onHeaderClick = (e) => {
+    e.preventDefault();
+
+    if (isSearching) {
+      clearMovies();
+      setSearchTerm('', false);
+    }
+
+    history.push('/');
   };
 
   return (
     <Fragment>
       <nav className="nav">
-        <Link className="nav__link" to="/">
+        <Link
+          className="nav__link nav__link--header"
+          to="/"
+          onClick={(e) => onHeaderClick(e)}
+        >
           <h2 className="heading-2 pd-left-sm">WatchList</h2>
         </Link>
         <form className="nav__search">
@@ -41,6 +72,16 @@ const Navbar = ({
           <ul className="nav__user-option">
             {isAuthenticated ? (
               <Fragment>
+                <li className="nav__item">
+                  <Link className="nav__link" to="/watchedList">
+                    WatchedList
+                  </Link>
+                </li>
+                <li className="nav__item">
+                  <Link className="nav__link" to="/watchList">
+                    WatchList
+                  </Link>
+                </li>
                 <li className="nav__item">
                   <a className="nav__link" href="#" onClick={() => logout()}>
                     Logout
@@ -70,6 +111,12 @@ const Navbar = ({
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  movie: state.movie,
 });
 
-export default connect(mapStateToProps, { logout, setSearchTerm })(Navbar);
+export default connect(mapStateToProps, {
+  logout,
+  setSearchTerm,
+  getPopularMovies,
+  clearMovies,
+})(withRouter(Navbar));

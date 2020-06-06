@@ -28,8 +28,8 @@ export default function (state = initialState, action) {
     case SET_SEARCH:
       return {
         ...state,
-        isSearching: true,
-        searchTerm: payload,
+        isSearching: payload.isSearching,
+        searchTerm: payload.searchTerm,
       };
 
     case CLEAR_MOVIES:

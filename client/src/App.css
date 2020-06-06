@@ -35,6 +35,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
 }
+
 .nav__search {
   justify-self: center;
   display: flex;
@@ -78,6 +79,11 @@ body {
   font-weight: 700;
   text-decoration: none;
   color: #000;
+}
+
+.nav__link--header:link,
+.nav__link--header:visited {
+  justify-self: start;
 }
 
 .content-movie {
