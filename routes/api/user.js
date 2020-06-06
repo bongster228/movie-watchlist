@@ -40,6 +40,48 @@ router.post('/addwatched', auth, async (req, res) => {
   }
 });
 
+// @route   /api/user/removewatch/:movieId
+// @info    Remove a movie from the user's watch list
+// @access  Private
+router.delete('/removewatch/:movieId', auth, async (req, res) => {
+  try {
+    const { movieId } = req.params;
+    const user = await User.findById(req.user.id);
+
+    user.watchList = user.watchList.filter(
+      (movie) => movie.id.toString() !== movieId
+    );
+
+    await user.save();
+
+    return res.status(200).json(user.watchList);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err.message);
+  }
+});
+
+// @route   /api/user/removewatched/:movieId
+// @info    Remove a movie from the user's watched list
+// @access  Private
+router.delete('/removewatched/:movieId', auth, async (req, res) => {
+  try {
+    const { movieId } = req.params;
+    const user = await User.findById(req.user.id);
+
+    user.watchedList = user.watchedList.filter(
+      (movie) => movie.id.toString() !== movieId
+    );
+
+    await user.save();
+
+    return res.status(200).json(user.watchedList);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err.message);
+  }
+});
+
 // @route   /api/user
 // @info    Remove user
 // @access  Private

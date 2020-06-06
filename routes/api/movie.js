@@ -13,7 +13,7 @@ router.get('/popular', async (req, res) => {
       )}&language=en-US&page=1`
     );
 
-    res.json(response.data);
+    res.json(response.data.results);
   } catch (err) {
     console.log(err.message);
   }
