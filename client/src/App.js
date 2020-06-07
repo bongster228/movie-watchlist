@@ -10,18 +10,13 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/landing/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import WatchList from './components/watchList/WatchList';
+import WatchedList from './components/watchedList/WatchedList';
 
 // UTILS
-import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
-setAuthToken(localStorage.token);
-
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-
   return (
     <Provider store={store}>
       <Router>
@@ -30,6 +25,8 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/watchList" component={WatchList} />
+          <Route exact path="/watchedList" component={WatchedList} />
         </Switch>
       </Router>
     </Provider>

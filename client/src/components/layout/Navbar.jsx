@@ -87,7 +87,11 @@ const Navbar = ({
                   </Link>
                 </li>
                 <li className="nav__item">
-                  <a className="nav__link" href="#" onClick={() => logout()}>
+                  <a
+                    className="nav__link"
+                    href="#"
+                    onClick={() => logout(history)}
+                  >
                     Logout
                   </a>
                 </li>

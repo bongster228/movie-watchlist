@@ -175,6 +175,11 @@ body {
 .card-btn--watched {
   background-color: #f95738;
 }
+
+.card-btn--remove {
+  background-color: #d62424;
+}
+
 .card-btn:focus {
   outline: none;
 }

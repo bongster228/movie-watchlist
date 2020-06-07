@@ -3,6 +3,32 @@ const axios = require('axios');
 const User = require('../../model/User');
 const auth = require('../../middleware/auth');
 
+// @route   /api/user/getwatch
+// @info    Get the user's watch list
+// @access  Private
+router.get('/getwatch', auth, async (req, res) => {
+  try {
+    const currUser = await User.findById(req.user.id);
+
+    res.status(200).json(currUser.watchList);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+// @route   /api/user/getwatched
+// @info    Get the user's watched list
+// @accews  Private
+router.get('/getwatched', auth, async (req, res) => {
+  try {
+    const currUser = await User.findById(req.user.id);
+
+    res.status(200).json(currUser.watchedList);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 // @route   /api/user/addwatch
 // @info    Add movie to a user's watchlist
 // @access  Private

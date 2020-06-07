@@ -46,24 +46,28 @@ export const loginUser = (formData, history) => async (dispatch) => {
   }
 };
 
-export const loadUser = () => async (dispatch) => {
-  try {
-    const response = await axios.get('/api/auth');
+// export const loadUser = () => async (dispatch) => {
+//   try {
+//     const response = await axios.get('/api/auth');
 
-    dispatch({
-      type: LOAD_USER,
-      payload: response.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     console.log(response);
 
-export const logout = () => async (dispatch) => {
+//     dispatch({
+//       type: LOAD_USER,
+//       payload: response.data,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+export const logout = (history) => async (dispatch) => {
   try {
     dispatch({
       type: LOGOUT,
     });
+
+    history.push('/');
   } catch (err) {
     console.log(err);
   }

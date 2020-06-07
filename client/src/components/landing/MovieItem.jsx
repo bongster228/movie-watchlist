@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addToWatchList, addToWatchedList } from '../../actions/user';
 
 const MovieItem = ({
   movie: {
@@ -13,10 +14,34 @@ const MovieItem = ({
     overview,
     release_date,
   },
+  addToWatchList,
+  addToWatchedList,
 }) => {
-  const handleWatchButton = (movieData) => {};
+  const handleWatchButton = () => {
+    const watchMovie = {
+      title: original_title,
+      overview,
+      posterPath: poster_path,
+      releaseDate: release_date,
+      popularity,
+      voteAverage: vote_average,
+    };
 
-  const handleWatchedButton = (movieData) => {};
+    addToWatchList(watchMovie);
+  };
+
+  const handleWatchedButton = () => {
+    const watchedMovie = {
+      title: original_title,
+      overview,
+      posterPath: poster_path,
+      releaseDate: release_date,
+      popularity,
+      voteAverage: vote_average,
+    };
+
+    addToWatchedList(watchedMovie);
+  };
 
   return (
     <Fragment>
@@ -45,8 +70,18 @@ const MovieItem = ({
           </div>
         </div>
         <div className="movie-card__button">
-          <button className="card-btn card-btn--watch">Watch</button>
-          <button className="card-btn card-btn--watched">Watched</button>
+          <button
+            onClick={() => handleWatchButton()}
+            className="card-btn card-btn--watch"
+          >
+            Watch
+          </button>
+          <button
+            onClick={() => handleWatchedButton()}
+            className="card-btn card-btn--watched"
+          >
+            Watched
+          </button>
         </div>
       </div>
     </Fragment>
@@ -55,6 +90,8 @@ const MovieItem = ({
 
 MovieItem.propTypes = {
   movie: PropTypes.object.isRequired,
+  addToWatchList: PropTypes.func.isRequired,
+  addToWatchedList: PropTypes.func.isRequired,
 };
 
-export default MovieItem;
+export default connect(null, { addToWatchList, addToWatchedList })(MovieItem);

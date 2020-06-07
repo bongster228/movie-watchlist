@@ -15,7 +15,6 @@ const Landing = ({
   clearMovies,
   setPageNum,
   movie: { movies, loading, isSearching, searchTerm, pageNum },
-  history,
 }) => {
   useEffect(() => {
     if (isSearching) {
@@ -23,6 +22,8 @@ const Landing = ({
 
       searchMovies(searchTerm, pageNum);
     } else {
+      if (pageNum === 1) clearMovies();
+
       getPopularMovies(pageNum);
     }
   }, [
